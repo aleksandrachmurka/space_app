@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LaunchListQuery } from '../../generated/graphql';
 import { dateToLocale } from '../../utils/date';
-import { timeToLocale } from '../../utils/date';
+import { timeToLocale } from '../../utils/time';
 import './styles.css';
 
 interface Props {
