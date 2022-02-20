@@ -736,16 +736,24 @@ export type TrunkCargo = {
   unpressurized_cargo?: Maybe<Scalars['Boolean']>;
 };
 
-export type LaunchListQueryVariables = Exact<{ [key: string]: never; }>;
+export type LaunchQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LaunchListQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', flight_number?: number | null, mission_name?: string | null, launch_date_utc?: string | null } | null> | null };
+export type LaunchQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', flight_number?: number | null, mission_id?: Array<string | null> | null, mission_name?: string | null, launch_date_utc?: string | null } | null> | null };
+
+export type MissionQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
 
 
-export const LaunchListDocument = gql`
-    query LaunchList {
-  launches(limit: 10) {
+export type MissionQuery = { __typename?: 'Query', mission?: { __typename?: 'Mission', description?: string | null } | null };
+
+
+export const LaunchDocument = gql`
+    query Launch {
+  launches(limit: 50) {
     flight_number
+    mission_id
     mission_name
     launch_date_utc
   }
@@ -753,28 +761,63 @@ export const LaunchListDocument = gql`
     `;
 
 /**
- * __useLaunchListQuery__
+ * __useLaunchQuery__
  *
- * To run a query within a React component, call `useLaunchListQuery` and pass it any options that fit your needs.
- * When your component renders, `useLaunchListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useLaunchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLaunchQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useLaunchListQuery({
+ * const { data, loading, error } = useLaunchQuery({
  *   variables: {
  *   },
  * });
  */
-export function useLaunchListQuery(baseOptions?: Apollo.QueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
+export function useLaunchQuery(baseOptions?: Apollo.QueryHookOptions<LaunchQuery, LaunchQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
+        return Apollo.useQuery<LaunchQuery, LaunchQueryVariables>(LaunchDocument, options);
       }
-export function useLaunchListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
+export function useLaunchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LaunchQuery, LaunchQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
+          return Apollo.useLazyQuery<LaunchQuery, LaunchQueryVariables>(LaunchDocument, options);
         }
-export type LaunchListQueryHookResult = ReturnType<typeof useLaunchListQuery>;
-export type LaunchListLazyQueryHookResult = ReturnType<typeof useLaunchListLazyQuery>;
-export type LaunchListQueryResult = Apollo.QueryResult<LaunchListQuery, LaunchListQueryVariables>;
+export type LaunchQueryHookResult = ReturnType<typeof useLaunchQuery>;
+export type LaunchLazyQueryHookResult = ReturnType<typeof useLaunchLazyQuery>;
+export type LaunchQueryResult = Apollo.QueryResult<LaunchQuery, LaunchQueryVariables>;
+export const MissionDocument = gql`
+    query Mission($id: String!) {
+  mission(id: $id) {
+    description
+  }
+}
+    `;
+
+/**
+ * __useMissionQuery__
+ *
+ * To run a query within a React component, call `useMissionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMissionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMissionQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useMissionQuery(baseOptions: Apollo.QueryHookOptions<MissionQuery, MissionQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MissionQuery, MissionQueryVariables>(MissionDocument, options);
+      }
+export function useMissionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MissionQuery, MissionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MissionQuery, MissionQueryVariables>(MissionDocument, options);
+        }
+export type MissionQueryHookResult = ReturnType<typeof useMissionQuery>;
+export type MissionLazyQueryHookResult = ReturnType<typeof useMissionLazyQuery>;
+export type MissionQueryResult = Apollo.QueryResult<MissionQuery, MissionQueryVariables>;

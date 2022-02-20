@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import LaunchList from './components/LaunchList';
+import TableContainer from './components/Table/TableContainer';
 
 const App = () => (
 	<div className='App'>
-		<LaunchList />
+		<TableContainer />
 	</div>
 );
 
