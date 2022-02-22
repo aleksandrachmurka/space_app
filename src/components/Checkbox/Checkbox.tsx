@@ -6,7 +6,9 @@ interface Props {
 }
 
 const Checkbox: React.FC<Props> = ({ isFavourite, favouritesHandler }) => (
-	<input type='checkbox' checked={isFavourite} onChange={favouritesHandler}></input>
+	<td>
+		<input type='checkbox' checked={isFavourite} onChange={favouritesHandler}></input>
+	</td>
 );
 
 export default Checkbox;

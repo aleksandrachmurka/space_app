@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Launches, Launch } from '../../models';
 import Checkbox from '../Checkbox/Checkbox';
 import LaunchDate from '../LaunchDate/LaunchDate';
+import MissionName from '../MissionName/MissionName';
+import MissionDescription from '../MissionDescription/MissionDescription';
 import './styles.css';
 
 interface Props {
@@ -31,25 +33,21 @@ const TableBody: React.FC<Props> = ({ launches }) => {
 
 	return (
 		<tbody className={className}>
-			{launches &&
-				launches.map(
-					launch =>
-						launch && (
-							<tr key={launch.flight_number}>
-								<td>
-									<Checkbox
-										favouritesHandler={() => toggleFavourite(launch.flight_number)}
-										isFavourite={checkIfIsFavourite(launch.flight_number)}
-									/>
-								</td>
-								<td>
-									<LaunchDate date={launch.launch_date_utc} />
-								</td>
-								<td>{launch.mission_name}</td>
-								<td>desc</td>
-							</tr>
-						)
-				)}
+			{launches!.map(
+				launch =>
+					launch && (
+						<tr key={launch.flight_number}>
+							<Checkbox
+								favouritesHandler={() => toggleFavourite(launch.flight_number)}
+								isFavourite={checkIfIsFavourite(launch.flight_number)}
+							/>
+							<LaunchDate date={launch.launch_date_utc} />
+							<MissionName missionName={launch.mission_name} />
+							{/* @ts-ignore */}
+							<MissionDescription missionId={launch.mission_id} />
+						</tr>
+					)
+			)}
 		</tbody>
 	);
 };

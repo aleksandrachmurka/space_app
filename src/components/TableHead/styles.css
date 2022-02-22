@@ -1,13 +1,5 @@
-.sort {
+.TableHead__sort {
 	margin-left: 10px;
 	font-weight: 200;
 	cursor: pointer;
 }
-
-/* .ascending:after {
-	content: '\25b2';
-}
-
-.descending:after {
-	content: '\25bc';
-} */

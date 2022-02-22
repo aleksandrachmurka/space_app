@@ -8,7 +8,9 @@ interface Props {
 }
 
 const LaunchDate: React.FC<Props> = ({ date }) => (
-	<span>{`${dateToLocale(date)}, ${timeToLocale(date)}`}</span>
+	<td>
+		<span>{`${dateToLocale(date)}, ${timeToLocale(date)}`}</span>
+	</td>
 );
 
 export default LaunchDate;
