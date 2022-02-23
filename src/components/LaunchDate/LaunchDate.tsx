@@ -9,7 +9,7 @@ interface Props {
 
 const LaunchDate: React.FC<Props> = ({ date }) => (
 	<td>
-		<span>{`${dateToLocale(date)}, ${timeToLocale(date)}`}</span>
+		<span data-testid='date'>{`${dateToLocale(date)}, ${timeToLocale(date)}`}</span>
 	</td>
 );
 

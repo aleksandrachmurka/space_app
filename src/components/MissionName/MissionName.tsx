@@ -5,6 +5,6 @@ interface Props {
 	missionName: Launch['mission_name'];
 }
 
-const MissionName: React.FC<Props> = ({ missionName }) => <td>{missionName}</td>;
+const MissionName: React.FC<Props> = ({ missionName }) => <td data-testid='name'>{missionName}</td>;
 
 export default MissionName;

@@ -16,7 +16,6 @@ const Table: React.FC<Props> = ({ data }) => {
 
 	return (
 		<div className={`${className}__container`}>
-			<h3 className={`${className}__header`}>SPACE APP</h3>
 			<table className={`${className}__table`}>
 				<TableHead sortHandler={sortValue} />
 				<TableBody launches={sortedData} />

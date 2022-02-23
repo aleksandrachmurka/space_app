@@ -1,13 +1,5 @@
 .Table__container {
-	height: 100vh;
 	width: 100%;
-	background-color: #ececec;
-	padding-left: 0 20px 0 20px;
-	font-family: monospace;
-}
-
-.Table__header {
-	text-align: center;
 }
 
 .Table__table {

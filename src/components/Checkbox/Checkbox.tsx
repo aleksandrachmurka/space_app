@@ -2,12 +2,12 @@ import React from 'react';
 
 interface Props {
 	isFavourite: boolean;
-	favouritesHandler: () => void;
+	onChangeHandler: () => void;
 }
 
-const Checkbox: React.FC<Props> = ({ isFavourite, favouritesHandler }) => (
+const Checkbox: React.FC<Props> = ({ isFavourite, onChangeHandler }) => (
 	<td>
-		<input type='checkbox' checked={isFavourite} onChange={favouritesHandler}></input>
+		<input type='checkbox' checked={isFavourite} onChange={onChangeHandler}></input>
 	</td>
 );
 
