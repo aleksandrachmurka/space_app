@@ -1,12 +1,12 @@
 html,
 body {
 	margin: 0;
+	background-color: #ececec;
 }
 
 .App {
 	font-family: monospace;
 	text-align: center;
-	background-color: #ececec;
 	width: 100%;
 }
 
